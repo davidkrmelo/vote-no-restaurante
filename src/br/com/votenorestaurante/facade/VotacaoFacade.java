@@ -1,12 +1,10 @@
 package br.com.votenorestaurante.facade;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import br.com.votenorestaurante.controle.util.CriarBanco;
 import br.com.votenorestaurante.dao.DAO;
 import br.com.votenorestaurante.modelo.Candidato;
 import br.com.votenorestaurante.modelo.Confronto;
@@ -21,7 +19,6 @@ public abstract class VotacaoFacade<T extends Candidato> {
 	protected abstract void criaDAO();
 	
 	public VotacaoFacade() {
-		verificaBanco();
 		criaDAO();
 	}
 	
@@ -74,15 +71,6 @@ public abstract class VotacaoFacade<T extends Candidato> {
 
 	public void setConfrontoAtual(Confronto<T> confrontoAtual) {
 		this.confrontoAtual = confrontoAtual;
-	}
-	
-	private void verificaBanco()  {
-		try {
-			CriarBanco.criarBanco();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 	}
 	
 }

@@ -1,30 +1,25 @@
-package br.com.votenorestaurante.controle.util;
+package br.com.votenorestaurante.dao.util;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import br.com.votenorestaurante.dao.RestauranteDAO;
 import br.com.votenorestaurante.modelo.Restaurante;
 
-public class CriarBanco {
+public class BancoUtil {
 
-	private static boolean bancoCriado = false;
+	private boolean bancoCriado = false;
 	
-	public static void criarBanco() throws IOException {
+	public void criarBanco() throws IOException {
 		if (!bancoCriado) {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("VoteNoRestaurantePU");
 			EntityManager em = emf.createEntityManager();
 			
-			RestauranteDAO dao = new RestauranteDAO();
+			//RestauranteDAO dao = new RestauranteDAO();
 			
 			//outback
 			Restaurante r1 = new Restaurante();
@@ -59,28 +54,28 @@ public class CriarBanco {
 			r5.setLogo(converterParaByte("C:\\Users\\Flávia\\workspace\\restaurantes\\ponto chic\\ponto-chic-branding-041.jpg"));
 			
 			try {
-				dao.iniciaTransacao();
-				dao.salvar(r1);
-				dao.salvar(r2);
-				dao.salvar(r3);
-				dao.salvar(r4);
-				dao.salvar(r5);
-				dao.commitTransacao();
+				em.getTransaction().begin();
+				em.persist(r1);
+				em.persist(r2);
+				em.persist(r3);
+				em.persist(r4);
+				em.persist(r5);
+				em.getTransaction().commit();
 				bancoCriado = true;
 			} catch (Exception e) {
-				dao.rollbackTransacao();
+				em.getTransaction().rollback();
 				e.printStackTrace();
 			}
 			
-			List<Restaurante> lista = dao.listarTodos();
-			System.out.println("QTD::: " + lista.size());
-			for (Restaurante r: lista) {
-				System.out.println(r.getNome());
-			}
+//			List<Restaurante> lista = dao.listarTodos();
+//			System.out.println("QTD::: " + lista.size());
+//			for (Restaurante r: lista) {
+//				System.out.println(r.getNome());
+//			}
 		}
 	}
 	
-	public static byte[] converterParaByte(String caminho) throws IOException {
+	private static byte[] converterParaByte(String caminho) throws IOException {
     	FileInputStream fileInputStream=null;
         
         File file = new File(caminho);

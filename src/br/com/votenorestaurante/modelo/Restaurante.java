@@ -21,6 +21,9 @@ public class Restaurante implements Candidato {
 	@Column(name="nome", nullable=false, length=50)
 	private String nome;
 	
+	@Column(name="descricao", nullable=false, length=600)
+	private String descricao;
+	
 	@Lob
 	@Column(name = "logo")
 	private byte[] logo;
@@ -60,10 +63,19 @@ public class Restaurante implements Candidato {
 		this.site = site;
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + id;
 		result = prime * result + Arrays.hashCode(logo);
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -80,6 +92,11 @@ public class Restaurante implements Candidato {
 		if (getClass() != obj.getClass())
 			return false;
 		Restaurante other = (Restaurante) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
 		if (id != other.id)
 			return false;
 		if (!Arrays.equals(logo, other.logo))

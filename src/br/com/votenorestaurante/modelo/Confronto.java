@@ -2,6 +2,7 @@ package br.com.votenorestaurante.modelo;
 
 public class Confronto<T extends Candidato> {
 	
+	
 	private T c1;
 	
 	private T c2;
