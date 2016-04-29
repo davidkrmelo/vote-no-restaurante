@@ -12,23 +12,31 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.votenorestaurante.dao.RestauranteDAO;
+import br.com.votenorestaurante.dao.VotosDAO;
 import br.com.votenorestaurante.modelo.Restaurante;
 
 public class Teste {
 
 	public static void main(String[] args) {
-//		EntityManagerFactory emf = Persistence.createEntityManagerFactory("VoteNoRestaurantePU");
-//		EntityManager em = emf.createEntityManager();
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("VoteNoRestaurantePU");
+		EntityManager em = emf.createEntityManager();
+		
+		VotosDAO votosDAO = new VotosDAO();
+		System.out.println(votosDAO.buscarMaisVotados().size());
+		//System.out.println(em.createQuery("SELECT SUM(v.qtdVotos) FROM VotosUsuario v").getSingleResult());
+		
+		
 //		
 //		Restaurante r = em.find(Restaurante.class, 1);
 //		
 //		System.out.println(r);
-		RestauranteDAO dao = new RestauranteDAO();
-		List<Restaurante> lista = dao.listarTodos();
-		System.out.println("QTD::: " + lista.size());
-		for (Restaurante r: lista) {
-			System.out.println(r.getNome());
-		}
+//		RestauranteDAO dao = new RestauranteDAO();
+//		List<Restaurante> lista = dao.listarTodos();
+//		System.out.println("QTD::: " + lista.size());
+//		for (Restaurante r: lista) {
+//			System.out.println(r.getNome());
+//		}
 		
 	}
 	

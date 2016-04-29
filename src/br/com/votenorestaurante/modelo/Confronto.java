@@ -48,7 +48,7 @@ public class Confronto<T extends Candidato> {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((c1 == null) ? 0 : c1.hashCode());
-		result = prime * result + ((c2 == null) ? 0 : c2.hashCode());
+		result += prime * result + ((c2 == null) ? 0 : c2.hashCode());
 		return result;
 	}
 	

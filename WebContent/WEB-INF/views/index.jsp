@@ -29,23 +29,23 @@
 	            <div class="row services-row services-row-head services-row-1">
 	                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 	                    <div class="services-group wow animated">
-	                        <img src="${resources}/assets/img/logo-outback.jpg" height="100" alt="">
-	                        <h4 class="services-title">Outback</h4>
-	                        <p class="services-body">O Outback Steakhouse é um restaurante informal, construído e decorado em estilo que remete ao interior da Austrália. São mais de 800 restaurantes nos Estados Unidos, onde foi inaugurado em 1988, e cerca de 120 unidades em outros 22 países.</p>
-	                        <p class="services-more"><a href="https://www.outback.com.br/" target="_blank">Site oficial</a></p>
+	                        <img src="${logoR1}" height="100" width="300" alt="Logo de ${restaurante1.nome}">
+	                        <h4 class="services-title">${restaurante1.nome}</h4>
+	                        <p class="services-body">${restaurante1.descricao} </p>
+	                        <p class="services-more"><a href="${restaurante1.site}" target="_blank">Site oficial</a></p>
 	                    </div>
 	                </div>
                 </a>
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">VS</div>
 
-				<a href="votar?id=${restaurante1.id}">
+				<a href="votar?id=${restaurante2.id}">
 	                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 	                    <div class="services-group wow animated">
-	                        <img src="${resources}/assets/img/logo-da-Temakeria-e-Cia.jpg" height="100" alt="">
-	                        <h4 class="services-title">Temakeria e Cia.</h4>
-	                        <p class="services-body">A primeira Temakeria e Cia foi inaugurada em 2006. Hoje conta com mais de 20 franquias em diversas cidades brasileiras. Conquistou uma clientela fiel ao propor temakis fartamente recheados a preços moderados.</p>
-	                        <p class="services-more"><a href="http://www.temakeria-ecia.com/" target="_blank">Site oficial</a></p>
+	                        <img src="${logoR2}" height="100" width="300" alt="Logo de ${restaurante2.nome}">
+	                        <h4 class="services-title">${restaurante2.nome}</h4>
+	                        <p class="services-body">${restaurante2.descricao} </p>
+	                        <p class="services-more"><a href="${restaurante2.site}" target="_blank">Site oficial</a></p>
 	                    </div>
 	                </div>
         		</a>

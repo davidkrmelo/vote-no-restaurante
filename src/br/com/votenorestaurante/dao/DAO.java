@@ -1,6 +1,5 @@
 package br.com.votenorestaurante.dao;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,25 +7,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import br.com.votenorestaurante.dao.util.BancoUtil;
 import br.com.votenorestaurante.modelo.Entidade;
 
 public abstract class DAO<T extends Entidade> {
 
-	private EntityManager em;
+	protected EntityManager em;
 	private EntityManagerFactory emf;
 	private Class<T> classe;
-	//private BancoUtil bUtil;
 	
 	DAO(Class<T> classe) {
-//		if (bUtil == null) {
-//			bUtil = new BancoUtil();
-//			try {
-//				bUtil.criarBanco();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
 		this.classe = classe;
 		this.emf = Persistence.createEntityManagerFactory("VoteNoRestaurantePU");
 		carregarEm();

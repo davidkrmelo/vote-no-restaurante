@@ -3,23 +3,13 @@ package br.com.votenorestaurante.modelo;
 import java.util.Arrays;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="restaurante")
-public class Restaurante implements Candidato {
-
-	@Id
-	@GeneratedValue
-	@Column(name="id")
-	private int id;
-	
-	@Column(name="nome", nullable=false, length=50)
-	private String nome;
+@DiscriminatorValue(value="restaurante")
+public class Restaurante extends Candidato {
 	
 	@Column(name="descricao", nullable=false, length=600)
 	private String descricao;
@@ -30,22 +20,6 @@ public class Restaurante implements Candidato {
 	
 	@Column(name="site", nullable=false, length=50)
 	private String site;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}	
 
 	public byte[] getLogo() {
 		return logo;
@@ -76,9 +50,7 @@ public class Restaurante implements Candidato {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-		result = prime * result + id;
 		result = prime * result + Arrays.hashCode(logo);
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((site == null) ? 0 : site.hashCode());
 		return result;
 	}
@@ -97,14 +69,7 @@ public class Restaurante implements Candidato {
 				return false;
 		} else if (!descricao.equals(other.descricao))
 			return false;
-		if (id != other.id)
-			return false;
 		if (!Arrays.equals(logo, other.logo))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
 			return false;
 		if (site == null) {
 			if (other.site != null)
@@ -113,7 +78,6 @@ public class Restaurante implements Candidato {
 			return false;
 		return true;
 	}
-	
 	
 	
 	

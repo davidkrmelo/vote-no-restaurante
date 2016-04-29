@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Ranking de Restaurantes</title>
 </head>
 <body>
 
-Banco criado com sucesso!
 <table>
 	<c:forEach items="${lista}" var="r">
 		<tr>
-			<td>${r.nome}</td>
+			<td>${r.key}</td>
+			<td>${r.value}</td>
 		</tr>
 	
 	</c:forEach>
-</table>
+
 </body>
 </html>
